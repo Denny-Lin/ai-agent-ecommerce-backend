@@ -1,12 +1,16 @@
 # AI Agent E-commerce Backend
 
-An AI agent powered e-commerce backend built with FastAPI. This project demonstrates how an AI agent can interact with backend APIs using tool calling to perform e-commerce related tasks.
+An AI agent powered e-commerce backend built with FastAPI.  
+This project demonstrates how an AI agent can interact with backend APIs using tool calling to perform e-commerce related tasks.
+
+The system uses a **local LLM (Ollama)** to decide which tools to call.
 
 ---
 
 ## Features
 
 - AI Agent with tool calling
+- Local LLM using Ollama
 - FastAPI backend service
 - Order management API
 - Product query API
@@ -20,10 +24,20 @@ An AI agent powered e-commerce backend built with FastAPI. This project demonstr
 ai-agent-ecommerce-backend/
 │
 ├── backend/
-│   └── server.py
+│ └── server.py
 │
 ├── agent/
-│   └── agent.py
+│ └── agent.py
+│
+├── tools/
+│ └── order_tools.py
+│
+├── models/
+│ ├── order.py
+│ └── product.py
+│
+├── tests/
+│ └── test_api.py
 │
 ├── requirements.txt
 └── README.md
@@ -35,17 +49,19 @@ ai-agent-ecommerce-backend/
 
 ```
 User
- ↓
+↓
+Local LLM (Ollama)
+↓
 AI Agent
- ↓
+↓
 Tool Functions
- ├ get_order()
- ├ cancel_order()
- ├ create_order()
- └ get_products()
- ↓
+├ get_order()
+├ cancel_order()
+├ create_order()
+└ get_products()
+↓
 FastAPI Backend
- ↓
+↓
 In-memory Data Store
 ```
 
@@ -88,6 +104,26 @@ pip install -r requirements.txt
 
 ---
 
+## Install Ollama (Local LLM)
+
+Install Ollama:
+
+```bash
+brew install ollama
+```
+
+Start Ollama server:
+
+```bash
+ollama serve
+```
+
+Download a small model:
+
+```bash
+ollama run phi3:mini
+```
+
 ## Run Backend Server
 
 Start the FastAPI server:
@@ -110,30 +146,24 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## API Endpoints
+Run Backend Server
 
-### Get Products
-
-```
-GET /products
-```
-
-### Get Order
+Start the FastAPI server:
 
 ```
-GET /order/{order_id}
+uvicorn backend.server:app --reload
 ```
 
-### Create Order
+Server will run at:
 
 ```
-POST /order
+http://127.0.0.1:8000
 ```
 
-### Cancel Order
+API documentation:
 
 ```
-POST /order/{order_id}/cancel
+http://127.0.0.1:8000/docs
 ```
 
 ---
@@ -143,20 +173,28 @@ POST /order/{order_id}/cancel
 Run the agent script:
 
 ```bash
-python agent/agent.py
+python -m agent.agent
 ```
 
 Example queries:
 
 ```
-Where is order 1001?
-Cancel order 1002
-What products are available?
+show products
+where is my order 1001
+cancel order 1002
 ```
 
 The AI agent will call backend APIs using tool functions.
 
 ---
+
+## Testing
+
+Run API tests:
+
+```
+pytest
+```
 
 ## Learning Objectives
 
@@ -165,6 +203,7 @@ This project demonstrates:
 - AI agent tool calling
 - Backend API interaction
 - FastAPI service development
+- Local LLM integration
 - AI + backend architecture design
 
 ---
