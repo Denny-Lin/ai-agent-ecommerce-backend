@@ -60,6 +60,26 @@ git clone https://github.com/yourname/ai-agent-ecommerce-backend.git
 cd ai-agent-ecommerce-backend
 ```
 
+Create a virtual environment:
+
+```bash
+python3 -m venv venv
+```
+
+Activate the environment:
+
+Mac / Linux:
+
+```bash
+source venv/bin/activate
+```
+
+Windows:
+
+```bash
+venv\Scripts\activate
+```
+
 Install dependencies:
 
 ```bash
