@@ -130,7 +130,6 @@ Make sure you login first:
 
 ```bash
 ollama login
-ollama serve
 ```
 
 ## Run Backend Server
@@ -162,6 +161,8 @@ Run agent evaluation tests:
 ```bash
 pytest tests/test_agent.py -s
 ```
+
+---
 
 ## Learning Objectives
 
