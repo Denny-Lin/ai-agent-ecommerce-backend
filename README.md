@@ -10,7 +10,7 @@ The system uses a **local LLM (Ollama)** to decide which tools to call.
 ## Features
 
 - AI Agent with tool calling
-- Local LLM using Ollama
+- LLM integration using Ollama (local or cloud models)
 - FastAPI backend service
 - Order management API
 - Product query API
@@ -49,19 +49,20 @@ ai-agent-ecommerce-backend/
 
 ```
 User
-↓
-Local LLM (Ollama)
-↓
-AI Agent
-↓
+ ↓
+FastAPI API (/agent)
+ ↓
+LLM (Ollama)
+ ↓
+AI Agent Logic
+ ↓
 Tool Functions
-├ get_order()
-├ cancel_order()
-├ create_order()
-└ get_products()
-↓
-FastAPI Backend
-↓
+ ├ get_products()
+ ├ get_order()
+ └ cancel_order()
+ ↓
+FastAPI Backend APIs
+ ↓
 In-memory Data Store
 ```
 
@@ -118,10 +119,18 @@ Start Ollama server:
 ollama serve
 ```
 
-Download a small model:
+## Using Cloud Models
+
+This project can use Ollama cloud models such as:
+
+- gpt-oss:20b-cloud
+- deepseek-v3.1-cloud
+
+Make sure you login first:
 
 ```bash
-ollama run phi3:mini
+ollama login
+ollama serve
 ```
 
 ## Run Backend Server
@@ -146,54 +155,12 @@ http://127.0.0.1:8000/docs
 
 ---
 
-Run Backend Server
-
-Start the FastAPI server:
-
-```
-uvicorn backend.server:app --reload
-```
-
-Server will run at:
-
-```
-http://127.0.0.1:8000
-```
-
-API documentation:
-
-```
-http://127.0.0.1:8000/docs
-```
-
----
-
-## Running the AI Agent
-
-Run the agent script:
-
-```bash
-python -m agent.agent
-```
-
-Example queries:
-
-```
-show products
-where is my order 1001
-cancel order 1002
-```
-
-The AI agent will call backend APIs using tool functions.
-
----
-
 ## Testing
 
-Run API tests:
+Run agent evaluation tests:
 
-```
-pytest
+```bash
+pytest tests/test_agent.py -s
 ```
 
 ## Learning Objectives
