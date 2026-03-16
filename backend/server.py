@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from models.order import Order
 from models.product import Product
 
+from agent.agent import interpret_and_call_tools
+
 app = FastAPI()
 
 # Fake database
@@ -54,3 +56,13 @@ def cancel_order(order_id: str):
     orders[order_id]["status"] = "cancelled"
 
     return {"message": "order cancelled"}
+
+
+# ------------------------
+# AI Agent Endpoint
+# ------------------------
+
+@app.post("/agent")
+def run_agent(query: str):
+    result = interpret_and_call_tools(query)
+    return result
