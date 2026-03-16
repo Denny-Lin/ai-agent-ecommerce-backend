@@ -63,7 +63,7 @@ cd ai-agent-ecommerce-backend
 Create a virtual environment:
 
 ```bash
-python3 -m venv venv
+/opt/homebrew/opt/python@3.11/bin/python3.11 -m venv venv
 ```
 
 Activate the environment:
