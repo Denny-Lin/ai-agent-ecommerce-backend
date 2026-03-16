@@ -3,7 +3,7 @@
 An AI agent powered e-commerce backend built with FastAPI.  
 This project demonstrates how an AI agent can interact with backend APIs using tool calling to perform e-commerce related tasks.
 
-The system uses a **local LLM (Ollama)** to decide which tools to call.
+The system uses a **LLM (Ollama)** to decide which tools to call.
 
 ---
 
@@ -105,15 +105,13 @@ pip install -r requirements.txt
 
 ---
 
-## Install Ollama (Local LLM)
+## Install Ollama
 
-Install Ollama:
+Download and install Ollama from the official website:
 
-```bash
-brew install ollama
-```
+https://ollama.com/download
 
-Start Ollama server:
+After installation, start the Ollama server:
 
 ```bash
 ollama serve
