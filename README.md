@@ -1,7 +1,6 @@
 # AI Agent E-commerce Backend
 
-An AI agent powered e-commerce backend built with FastAPI.  
-This project demonstrates how an AI agent can interact with backend APIs using tool calling to perform e-commerce related tasks.
+An AI agent powered e-commerce backend built with FastAPI. This project demonstrates how an AI agent can interact with backend APIs using tool calling to perform e-commerce related tasks.
 
 ---
 
